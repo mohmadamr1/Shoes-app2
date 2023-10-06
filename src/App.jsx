@@ -1,35 +1,54 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+
+import Products from "./components/Products"
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import Sharedlsyout from "./components/Sharedlsyout";
+import Home from "./components/Home";
+import MySkills from "./components/MySkills";
+import Man from "./components/Man";
+import Women from "./components/women";
+import NewArrivals from "./components/NewArrivals";
+
+
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  
+  const Router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Sharedlsyout/>,
+      children: [
+        {
+          path: "/",
+          element: < Home />,
+        },
+        {
+          path: "/products",
+          element: <Products />,
+        },
+        {
+          path: "/myskills ",
+          element: <MySkills />,
+        },
+        {
+          path: "/man",
+          element: <Man />,
+        },
+        {
+          path: "/women",
+          element: <Women/>,
+        },
+        {
+          path: "/new Arrivals",
+          element: <NewArrivals/>,
+        },
+      ],
+    },
+  ]);
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <RouterProvider router={Router} />
     </>
-  )
+  );
 }
 
 export default App
