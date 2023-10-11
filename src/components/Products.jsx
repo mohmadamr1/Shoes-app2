@@ -12,6 +12,7 @@ const Products = () => {
     try {
       const response = await axios.get("https://6515830edc3282a6a3ce8a44.mockapi.io/shoes");
       setShoes(response.data);
+      console.log(response.data);
     } catch (error) {
       throw new Error(error);
     }
